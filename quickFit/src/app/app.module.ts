@@ -4,7 +4,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { LoginPage } from '../pages/login/login';
-import { AboutPage } from '../pages/about/about';
+import { ProfilePage } from '../pages/profile/profile';
 import { SettingsPage } from '../pages/settings/settings';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -24,7 +24,7 @@ import { NgxErrorsModule } from '@ultimate/ngxerrors';
   declarations: [
     MyApp,
     LoginPage,
-    AboutPage,
+    ProfilePage,
     SettingsPage,
     HomePage,
     TabsPage,
@@ -40,7 +40,7 @@ import { NgxErrorsModule } from '@ultimate/ngxerrors';
   entryComponents: [
     MyApp,
     LoginPage,
-    AboutPage,
+    ProfilePage,
     SettingsPage,
     HomePage,
     TabsPage,
