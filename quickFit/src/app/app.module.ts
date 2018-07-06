@@ -8,6 +8,7 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
+import { SignupPage } from '../pages/signup/signup';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -18,7 +19,6 @@ import { firebaseConfig } from '../config';
 
 import { AuthService } from '../services/auth.service';
 import { NgxErrorsModule } from '@ultimate/ngxerrors';
-import { SignupPage } from '../pages/signup/signup';
 
 @NgModule({
   declarations: [

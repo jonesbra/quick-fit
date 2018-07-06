@@ -3,7 +3,7 @@ import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
+import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 import { AuthService } from '../services/auth.service';
 
@@ -25,37 +25,20 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
-    });
-  }
 
-  login() {
-    console.log('logging in')
-  	this.auth.signOut();
-    this.navCtrl.setRoot(LoginPage);
-  }
-
-  logout() {
-  	this.auth.signOut();
-  	this.navCtrl.setRoot(HomePage);
-  }
-
-  initializeApp() {
-    this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
-    });
-
-    this.auth.afAuth.authState
-      .subscribe(
-        user => {
-          if (user) {
-            this.rootPage = HomePage;
-          } else {
+      this.auth.afAuth.authState
+        .subscribe(
+          user => {
+            if (user) {
+              this.rootPage = TabsPage;
+            } else {
+              this.rootPage = LoginPage;
+            }
+          },
+          () => {
             this.rootPage = LoginPage;
           }
-        },
-        () => {
-          this.rootPage = LoginPage;
-        }
-      );
+        );
+    });
   }
 }
