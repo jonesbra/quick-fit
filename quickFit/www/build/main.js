@@ -116,6 +116,7 @@ var AboutPage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SettingsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__(78);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -127,17 +128,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
+
 var SettingsPage = /** @class */ (function () {
-    function SettingsPage(navCtrl) {
+    function SettingsPage(navCtrl, auth, toastCtrl) {
         this.navCtrl = navCtrl;
+        this.auth = auth;
+        this.toastCtrl = toastCtrl;
     }
+    SettingsPage.prototype.signOut = function () {
+        // Sign out using authorization service
+        this.auth.signOut();
+        // Notify the user that we have succesfully signed out
+        var toast = this.toastCtrl.create({
+            message: 'Signed out succesfully.',
+            duration: 3000,
+            position: 'bottom'
+        });
+        toast.present();
+    };
     SettingsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-settings',template:/*ion-inline-start:"/Users/brandonjones/OneDrive - WWT/Projects/quick-fit/quickFit/src/pages/settings/settings.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      Settings\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n    <ion-list-header>Follow us on Twitter</ion-list-header>\n    <ion-item>\n      <ion-icon name="ionic" item-start></ion-icon>\n      @ionicframework\n    </ion-item>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/Users/brandonjones/OneDrive - WWT/Projects/quick-fit/quickFit/src/pages/settings/settings.html"*/
+            selector: 'page-settings',template:/*ion-inline-start:"/Users/brandonjones/OneDrive - WWT/Projects/quick-fit/quickFit/src/pages/settings/settings.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      Settings\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n    <button ion-button icon-left block color="danger" (click)="signOut()">\n      <ion-icon name="remove-circle"></ion-icon>\n      Log Out\n    </button>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/Users/brandonjones/OneDrive - WWT/Projects/quick-fit/quickFit/src/pages/settings/settings.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_auth_service__["a" /* AuthService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* ToastController */]) === "function" && _c || Object])
     ], SettingsPage);
     return SettingsPage;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=settings.js.map
