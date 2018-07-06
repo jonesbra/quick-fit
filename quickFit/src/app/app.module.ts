@@ -5,7 +5,7 @@ import { MyApp } from './app.component';
 
 import { LoginPage } from '../pages/login/login';
 import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
+import { SettingsPage } from '../pages/settings/settings';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { SignupPage } from '../pages/signup/signup';
@@ -25,7 +25,7 @@ import { NgxErrorsModule } from '@ultimate/ngxerrors';
     MyApp,
     LoginPage,
     AboutPage,
-    ContactPage,
+    SettingsPage,
     HomePage,
     TabsPage,
     SignupPage
@@ -41,7 +41,7 @@ import { NgxErrorsModule } from '@ultimate/ngxerrors';
     MyApp,
     LoginPage,
     AboutPage,
-    ContactPage,
+    SettingsPage,
     HomePage,
     TabsPage,
     SignupPage
