@@ -6,8 +6,44 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
+  <h2>General</h2>
 
+  <ion-item>
+    <ion-label stacked>First Name</ion-label>
+    <ion-input type="text" [(ngModel)]="firstName" name="first"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Last Name</ion-label>
+    <ion-input type="password" [(ngModel)]="lastName" name="last"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Gender</ion-label>
+    <ion-select [(ngModel)]="gender">
+      <ion-option value="f">Female</ion-option>
+      <ion-option value="m">Male</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Birthday</ion-label>
+    <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="birthday"></ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Height</ion-label>
+    <ion-range [(ngModel)]="height" pin="true" min="36" max="96">
+      <ion-icon small range-left name="body"></ion-icon>
+      <ion-icon range-right name="body"></ion-icon>
+    </ion-range>
+  </ion-item>
+
+  <button ion-button icon-left block color="secondary" (click)="update()">
+    <ion-icon name="add-circle"></ion-icon>
+    Update
+  </button>
 </ion-content>
 
 <ion-footer no-border>

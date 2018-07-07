@@ -31,4 +31,8 @@ export class SettingsPage {
     toast.present();
   }
 
+  update() {
+    console.log('updating')
+  }
+
 }
