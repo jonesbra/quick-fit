@@ -6,39 +6,47 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 import { AuthService } from '../services/auth.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) navCtrl: Nav
-  rootPage:any = LoginPage;
+
+  rootPage : any = LoginPage;
 
   constructor(
     platform: Platform,
     statusBar: StatusBar,
     splashScreen: SplashScreen,
-    private auth: AuthService,
-  ) {
-    platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      statusBar.styleDefault();
-      splashScreen.hide();
 
-      this.auth.afAuth.authState
-        .subscribe(
-          user => {
-            if (user) {
-              this.rootPage = TabsPage;
-            } else {
-              this.rootPage = LoginPage;
+    private userService: UserService,
+    private auth: AuthService
+  ) {
+    let self = this
+
+    platform.ready()
+      .then(function () {
+        // Okay, so the platform is ready and our plugins are available.
+        // Here you can do any higher level native things you might need.
+        statusBar.styleDefault();
+        splashScreen.hide();
+
+        self.auth.afAuth.authState
+          .subscribe(
+            user => {
+              if (user) {
+                self.rootPage = TabsPage;
+                userService.setUser(user);
+              } else {
+                self.rootPage = LoginPage;
+              }
+            },
+            () => {
+              self.rootPage = LoginPage;
             }
-          },
-          () => {
-            this.rootPage = LoginPage;
-          }
-        );
-    });
+          );
+      });
   }
 }

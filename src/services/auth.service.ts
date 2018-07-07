@@ -15,8 +15,7 @@ export class AuthService {
 
 	signInWithEmail(credentials) {
 		console.log('Sign in with email');
-		return this.afAuth.auth.signInWithEmailAndPassword(credentials.email,
-			 credentials.password);
+		return this.afAuth.auth.signInWithEmailAndPassword(credentials.email, credentials.password);
 	}
 
 	signUp(credentials) {

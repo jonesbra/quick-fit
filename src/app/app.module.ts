@@ -13,12 +13,14 @@ import { SignupPage } from '../pages/signup/signup';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { NgxErrorsModule } from '@ultimate/ngxerrors';
+
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { firebaseConfig } from '../config';
 
 import { AuthService } from '../services/auth.service';
-import { NgxErrorsModule } from '@ultimate/ngxerrors';
+import { UserService } from '../services/user.service';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,8 @@ import { NgxErrorsModule } from '@ultimate/ngxerrors';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AngularFireAuth,
-    AuthService
+    AuthService,
+    UserService
   ]
 })
 export class AppModule {}

@@ -24,14 +24,20 @@ export class SignupPage {
   }
 
   signup() {
-		let data = this.form.value;
+		let self = this;
+
+		let data = self.form.value;
 		let credentials = {
 			email: data.email,
 			password: data.password
 		};
-		this.auth.signUp(credentials).then(
-			() => this.navCtrl.setRoot(HomePage),
-			error => this.signupError = error.message
+		self.auth.signUp(credentials)
+			.then(function () {
+				self.navCtrl.setRoot(HomePage);
+			}
+			.catch(function (error) {
+				self.signupError = error.message;
+			})
 		);
   }
 }

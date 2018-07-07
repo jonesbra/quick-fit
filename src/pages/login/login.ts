@@ -1,10 +1,14 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NavController } from 'ionic-angular';
+
 import { AuthService } from '../../services/auth.service';
+import { UserService } from '../../services/user.service';
+
+import { ToastController } from 'ionic-angular';
+
 import { HomePage } from '../home/home';
 import { SignupPage } from '../signup/signup';
-import { ToastController } from 'ionic-angular';
 
 @Component({
   selector: 'page-login',
@@ -16,8 +20,11 @@ export class LoginPage {
 
 	constructor(
 		private navCtrl: NavController,
-		private auth: AuthService,
     private toastCtrl: ToastController,
+
+    private auth: AuthService,
+    private userService: UserService,
+
 		fb: FormBuilder
 	) {
 		this.loginForm = fb.group({
@@ -27,31 +34,33 @@ export class LoginPage {
 	}
 
   login() {
-  		let data = this.loginForm.value;
+    let self = this
 
-  		if (!data.email) {
-  			return;
-  		}
+		let data = self.loginForm.value;
 
-  		let credentials = {
-  			email: data.email,
-  			password: data.password
-  		};
-  		this.auth.signInWithEmail(credentials)
-			.then(
-				() => {
-          this.navCtrl.setRoot(HomePage);
+		if (!data.email) {
+			return;
+		}
+
+		let credentials = {
+			email: data.email,
+			password: data.password
+		};
+		self.auth.signInWithEmail(credentials)
+			.then(function () {
+          self.navCtrl.setRoot(HomePage);
           // Notify the user that the sign in was succesful
-          let toast = this.toastCtrl.create({
+          let toast = self.toastCtrl.create({
             message: 'Signed in succesfully.',
             duration: 3000,
             position: 'bottom'
           });
 
           toast.present();
-        },
-				error => this.loginError = error.message
-			);
+      })
+      .catch(function (error) {
+        self.loginError = error.message;
+      })
   	}
 
     signup(){
